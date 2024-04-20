@@ -1,8 +1,9 @@
-﻿//Written for Devine Twins. https://store.steampowered.com/app/2723140
+﻿//Written for games in the KQ Engine.
+//Devine Twins https://store.steampowered.com/app/2723140
 using System;
 using System.IO;
 
-namespace Devine_Twins_sssw_pak
+namespace KQ_Engine_sssw_pak
 {
     static class Program
     {
