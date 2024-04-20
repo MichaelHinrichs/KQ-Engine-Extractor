@@ -2,6 +2,7 @@
 //Devine Twins https://store.steampowered.com/app/2723140
 using System;
 using System.IO;
+using System.IO.Compression;
 
 namespace KQ_Engine_sssw_pak
 {
@@ -31,14 +32,14 @@ namespace KQ_Engine_sssw_pak
                     unknown2 = br.ReadInt32()
                 });
             }
+
+            Directory.CreateDirectory(Path.GetDirectoryName(args[0]) + "//" + Path.GetFileNameWithoutExtension(args[0]));
             foreach (SUBFILE sub in fileTable)
             {
                 br.BaseStream.Position = sub.offset;
-                Directory.CreateDirectory(Path.GetDirectoryName(args[0]) + "//" + Path.GetFileNameWithoutExtension(args[0]) + "//" + Path.GetDirectoryName(sub.name));
-                using FileStream FS = File.Create(Path.GetDirectoryName(args[0]) + "//" + Path.GetFileNameWithoutExtension(args[0]) + "//" + sub.name);
-                BinaryWriter bw = new(FS);
-                bw.Write(br.ReadBytes(sub.size));
-                bw.Close();
+                br.ReadInt16();
+                using (var ds = new DeflateStream(new MemoryStream(br.ReadBytes(sub.size - 2)), CompressionMode.Decompress))
+                    ds.CopyTo(File.Create(Path.GetDirectoryName(args[0]) + "//" + Path.GetFileNameWithoutExtension(args[0]) + "//" + sub.name));
             }
         }
 
