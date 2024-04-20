@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.IO.Compression;
 
-namespace KQ_Engine_sssw_pak
+namespace KQ_Engine_Extractor
 {
     static class Program
     {
