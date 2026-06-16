@@ -1,5 +1,5 @@
 ﻿//Written for games in the KQ Engine.
-//Devine Twins https://store.steampowered.com/app/2723140
+//Divine Twins https://store.steampowered.com/app/2723140
 using System;
 using System.IO;
 using System.IO.Compression;
